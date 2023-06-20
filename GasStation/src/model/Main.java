@@ -1,13 +1,13 @@
 package model;
 
-import java.time.LocalDate;
+import java.text.SimpleDateFormat;
 import java.time.format.DateTimeFormatter;
 
 import gui.GuiMain;
-import utils.MyException;
 
 public class Main {
 	public static final DateTimeFormatter frm = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+	public static final SimpleDateFormat dfrm = new SimpleDateFormat("dd/MM/yyyy");
 	public static final DateTimeFormatter dtfrm = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");
 	 
 	public static void main(String[] args) {

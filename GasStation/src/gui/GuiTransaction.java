@@ -5,7 +5,6 @@ import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.time.LocalDateTime;
 
 import javax.swing.ButtonGroup;
 import javax.swing.JFrame;
@@ -19,6 +18,11 @@ import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableModel;
 
+import model.DateLabelFormatter;
+import net.sourceforge.jdatepicker.JDatePicker;
+import net.sourceforge.jdatepicker.impl.JDatePanelImpl;
+import net.sourceforge.jdatepicker.impl.JDatePickerImpl;
+import net.sourceforge.jdatepicker.impl.UtilDateModel;
 import sql.SqlCustomer;
 import sql.SqlEmployee;
 
@@ -39,19 +43,24 @@ public class GuiTransaction extends JFrame {
 	private final JLabel lblEmployeeId = new JLabel("Employee id");
 	private final JTextField txtEmployeeId = new JTextField();
 	private final JLabel lblDate = new JLabel("Date");
-	private final JTextField txtDate = new JTextField();
+	//private final JTextField txtDate = new JTextField();
 	private final ButtonGroup buttonGroup = new ButtonGroup();
 	private JRadioButton rdbtnCash = new JRadioButton("Cash");
 	private JRadioButton rdbtncard = new JRadioButton("Credit Card");
+	/// Date Picker
+	private UtilDateModel dateModel = new UtilDateModel();
+	private JDatePanelImpl datePanel = new JDatePanelImpl(dateModel);
+	private JDatePickerImpl datePicker = new JDatePickerImpl(datePanel,new DateLabelFormatter());
 	
 	
 	/**
 	 * Create the frame.
 	 */
 	public GuiTransaction() {
-		txtDate.setBounds(147, 139, 96, 20);
-		txtDate.setColumns(10);
-		txtDate.setText(String.valueOf(LocalDateTime.now()));
+//		txtDate.setBounds(147, 139, 96, 20);
+//		txtDate.setColumns(10);
+//		txtDate.setText(String.valueOf(LocalDateTime.now()));
+		
 		txtEmployeeId.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -99,13 +108,17 @@ public class GuiTransaction extends JFrame {
 		
 		contentPane.add(lblDate);
 		
-		contentPane.add(txtDate);
+		//contentPane.add(txtDate);
+		datePicker.setBounds(147, 139, 184, 31);
+		contentPane.add(datePicker);
+		
 		buttonGroup.add(rdbtnCash);
-		rdbtnCash.setBounds(116, 178, 109, 23);
+		rdbtnCash.setBounds(147, 177, 72, 21);
 		contentPane.add(rdbtnCash);
 		buttonGroup.add(rdbtncard);
-		rdbtncard.setBounds(116, 203, 109, 23);
+		rdbtncard.setBounds(147, 202, 109, 23);
 		contentPane.add(rdbtncard);
+		
 	}
 
 
@@ -124,6 +137,7 @@ public class GuiTransaction extends JFrame {
 			}
 		});
 		
+				
 	}
 
 
